@@ -48,6 +48,7 @@ def main():
     p.add_argument("--end", default="2026-09-23")
     p.add_argument("--company", help="Optional company id")
     p.add_argument("--output", default="data")
+    p.add_argument("--batch", type=int, help="Zero-based batch of 25 companies")
     args = p.parse_args()
     from datetime import date, datetime, timezone
     date.fromisoformat(args.start)
@@ -56,9 +57,13 @@ def main():
         p.error("start must be <= end")
     companies = json.loads((ROOT / "config/companies.json").read_text())
     if args.company:
-        companies = [c for c in companies if c["id"] == args.company]
+        companies = [c for c in companies if c["id"] == args.company or args.company.upper() in c.get("tickers", [c["ticker"]])]
         if not companies:
             p.error("Unknown company id")
+    if args.batch is not None:
+        if args.company or args.batch < 0 or args.batch >= (len(companies)+24)//25:
+            p.error("Invalid batch or company and batch used together")
+        companies = companies[args.batch*25:(args.batch+1)*25]
     client = Client(os.environ.get("SEC_USER_AGENT", ""))
     out = Path(args.output)
     out.mkdir(parents=True, exist_ok=True)
@@ -66,19 +71,12 @@ def main():
     def save():
         (out / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
         (out / "status.json").write_text(json.dumps({"errors": errors, "manual_sources_required": skipped}, ensure_ascii=False, indent=2), encoding="utf-8")
-    try:
-        mapping = client.get("https://www.sec.gov/files/company_tickers.json").json()
-    except Exception:
-        errors.append({"stage": "ticker_mapping", "error": "SEC mapping fetch failed"})
-        save()
-        raise
-    by_ticker = {v["ticker"]: v for v in mapping.values()}
     for company in companies:
         if not company["sec_forms"]:
             skipped.append(company["id"])
             continue
         try:
-            cik = int(by_ticker[company["ticker"]]["cik_str"])
+            cik = int(company["cik"])
             sub = client.get(f"https://data.sec.gov/submissions/CIK{cik:010d}.json").json()
             selected = candidates(sub["filings"]["recent"], args.start, args.end, company["sec_forms"])
             for archive in sub["filings"].get("files", []):

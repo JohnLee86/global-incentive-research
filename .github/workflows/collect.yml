@@ -3,9 +3,35 @@ on:
   workflow_dispatch:
     inputs:
       company:
-        description: "Company id (blank = all SEC companies)"
+        description: "CIK id or historical ticker (blank = batch selection)"
         required: false
         default: ""
+      batch:
+        description: "25 companies per batch; all = 500 companies"
+        type: choice
+        default: all
+        options:
+          - all
+          - "0"
+          - "1"
+          - "2"
+          - "3"
+          - "4"
+          - "5"
+          - "6"
+          - "7"
+          - "8"
+          - "9"
+          - "10"
+          - "11"
+          - "12"
+          - "13"
+          - "14"
+          - "15"
+          - "16"
+          - "17"
+          - "18"
+          - "19"
       start:
         description: "Filing date from (not fiscal year)"
         default: "2025-01-01"
@@ -18,6 +44,11 @@ permissions:
   contents: read
 jobs:
   collect:
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        batch: ${{ fromJSON(inputs.company != '' && '[-1]' || inputs.batch == 'all' && '[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]' || format('[{0}]', inputs.batch)) }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -26,20 +57,26 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -r requirements.txt
+      - run: python -m unittest discover -s tests
       - name: Collect candidates
         env:
           SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
           COMPANY: ${{ inputs.company }}
+          BATCH: ${{ matrix.batch }}
           START: ${{ inputs.start }}
           END: ${{ inputs.end }}
         run: |
           args=(--start "$START" --end "$END")
-          if [ -n "$COMPANY" ]; then args+=(--company "$COMPANY"); fi
+          if [ -n "$COMPANY" ]; then
+            args+=(--company "$COMPANY")
+          else
+            args+=(--batch "$BATCH")
+          fi
           python scripts/collect_sec.py "${args[@]}"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: public-filings-${{ github.run_id }}
+          name: public-filings-${{ github.run_id }}-batch-${{ matrix.batch }}-attempt-${{ github.run_attempt }}
           path: data/
           if-no-files-found: warn
           retention-days: 90

@@ -1,0 +1,42 @@
+{
+  "index": "S&P 500",
+  "as_of": "2025-12-31",
+  "target_fiscal_year": 2025,
+  "securities": 503,
+  "companies": 500,
+  "membership_status": "historical_dataset_reconstructed_december_changes_cross_checked",
+  "historical_row_effective_date": "2025-12-22",
+  "history_source": {
+    "repo": "fja05680/sp500",
+    "path": "S&P 500 Historical Components & Changes (Updated).csv",
+    "commit": "a2430f2af0c79ddf0748e91de11bdeb1616ab5a7",
+    "committed_at": "2026-09-07T14:56:49Z"
+  },
+  "identity_mapping_sources": [
+    {
+      "url": "https://raw.githubusercontent.com/datasets/s-and-p-500-companies/b61fb6f07286691ee86971cab9956182094aca1f/data/constituents.csv",
+      "commit": "b61fb6f07286691ee86971cab9956182094aca1f",
+      "committed_at": "2025-08-12T00:45:55Z"
+    },
+    {
+      "repo": "datasets/s-and-p-500-companies",
+      "path": "data/constituents.csv",
+      "commit": "05a928d03abe805698f08446c355c3718c2d55dd",
+      "committed_at": "2026-09-21T01:58:17Z"
+    }
+  ],
+  "source_sha256": {
+    "history.csv": "36326709d46d6cd25834de5df457b16f5f96fad3a06b9beac28f7b88aa0b0d54",
+    "snapshot.csv": "493d7648fb12515727942f66137d84f1e34e63e8043aa14e0d7c042a7a599873",
+    "current.csv": "8e8c5a9aa27079a1feb6f92f9d56c5ad7a2084263a66d4191c54705a5b77c2ed"
+  },
+  "limitations": [
+    "Historical public dataset, not a licensed official full constituent file. December changes and total count cross-checked; full row-by-row official verification pending.",
+    "Company names/sector/CIK enriched from public mapping snapshots; these labels are not guaranteed as-of 2025-12-31. Membership tickers are frozen as-of date."
+  ],
+  "cross_checks": [
+    "https://www.spglobal.com/spdji/en/documents/indexnews/announcements/20251205-1480992/1480992_december2025rebalance.pdf",
+    "https://www.spglobal.com/spdji/en/documents/indexnews/announcements/20251208-1481001/1481001_56-k-hsii-vtle.pdf",
+    "https://topforeignstocks.com/wp-content/uploads/2026/01/SP-500-Factsheet-Dec-31-2025.pdf"
+  ]
+}
