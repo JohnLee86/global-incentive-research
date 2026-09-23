@@ -1,0 +1,178 @@
+[
+  {
+    "id": "alphabet",
+    "name": "Alphabet (Google)",
+    "country": "US",
+    "ticker": "GOOGL",
+    "target_fiscal_year": 2025,
+    "sec_forms": [
+      "DEF 14A",
+      "DEF 14A/A",
+      "10-K",
+      "10-K/A"
+    ]
+  },
+  {
+    "id": "apple",
+    "name": "Apple",
+    "country": "US",
+    "ticker": "AAPL",
+    "target_fiscal_year": 2025,
+    "sec_forms": [
+      "DEF 14A",
+      "DEF 14A/A",
+      "10-K",
+      "10-K/A"
+    ]
+  },
+  {
+    "id": "nvidia",
+    "name": "NVIDIA",
+    "country": "US",
+    "ticker": "NVDA",
+    "target_fiscal_year": 2025,
+    "sec_forms": [
+      "DEF 14A",
+      "DEF 14A/A",
+      "10-K",
+      "10-K/A"
+    ]
+  },
+  {
+    "id": "micron",
+    "name": "Micron Technology",
+    "country": "US",
+    "ticker": "MU",
+    "target_fiscal_year": 2025,
+    "sec_forms": [
+      "DEF 14A",
+      "DEF 14A/A",
+      "10-K",
+      "10-K/A"
+    ]
+  },
+  {
+    "id": "intel",
+    "name": "Intel",
+    "country": "US",
+    "ticker": "INTC",
+    "target_fiscal_year": 2025,
+    "sec_forms": [
+      "DEF 14A",
+      "DEF 14A/A",
+      "10-K",
+      "10-K/A"
+    ]
+  },
+  {
+    "id": "qualcomm",
+    "name": "Qualcomm",
+    "country": "US",
+    "ticker": "QCOM",
+    "target_fiscal_year": 2025,
+    "sec_forms": [
+      "DEF 14A",
+      "DEF 14A/A",
+      "10-K",
+      "10-K/A"
+    ]
+  },
+  {
+    "id": "microsoft",
+    "name": "Microsoft",
+    "country": "US",
+    "ticker": "MSFT",
+    "target_fiscal_year": 2025,
+    "sec_forms": [
+      "DEF 14A",
+      "DEF 14A/A",
+      "10-K",
+      "10-K/A"
+    ]
+  },
+  {
+    "id": "ibm",
+    "name": "IBM",
+    "country": "US",
+    "ticker": "IBM",
+    "target_fiscal_year": 2025,
+    "sec_forms": [
+      "DEF 14A",
+      "DEF 14A/A",
+      "10-K",
+      "10-K/A"
+    ]
+  },
+  {
+    "id": "broadcom",
+    "name": "Broadcom",
+    "country": "US",
+    "ticker": "AVGO",
+    "target_fiscal_year": 2025,
+    "sec_forms": [
+      "DEF 14A",
+      "DEF 14A/A",
+      "10-K",
+      "10-K/A"
+    ]
+  },
+  {
+    "id": "whirlpool",
+    "name": "Whirlpool",
+    "country": "US",
+    "ticker": "WHR",
+    "target_fiscal_year": 2025,
+    "sec_forms": [
+      "DEF 14A",
+      "DEF 14A/A",
+      "10-K",
+      "10-K/A"
+    ]
+  },
+  {
+    "id": "tsmc",
+    "name": "TSMC",
+    "country": "TW",
+    "ticker": "TSM",
+    "target_fiscal_year": 2025,
+    "sec_forms": [
+      "20-F",
+      "20-F/A"
+    ]
+  },
+  {
+    "id": "sony",
+    "name": "Sony Group",
+    "country": "JP",
+    "ticker": "SONY",
+    "target_fiscal_year": 2025,
+    "sec_forms": [
+      "20-F",
+      "20-F/A"
+    ]
+  },
+  {
+    "id": "lonza",
+    "name": "Lonza Group",
+    "country": "CH",
+    "ticker": "LONN",
+    "target_fiscal_year": 2025,
+    "sec_forms": []
+  },
+  {
+    "id": "sk_hynix",
+    "name": "SK하이닉스",
+    "country": "KR",
+    "ticker": "000660",
+    "target_fiscal_year": 2025,
+    "sec_forms": []
+  },
+  {
+    "id": "hanwha",
+    "name": "㈜한화",
+    "country": "KR",
+    "ticker": "000880",
+    "target_fiscal_year": 2025,
+    "sec_forms": []
+  }
+]
